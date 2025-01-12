@@ -8,14 +8,15 @@ import 'package:todo_list_app/view/widgets_custom/custom_text_field.dart';
 import 'package:todo_list_app/viewmodels/auth_viewmodel.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  SignUpScreen({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isSmallScreen = size.width < 600;
     final authViewModel = Provider.of<AuthViewModel>(context);
-    final formKey = GlobalKey<FormState>();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -126,7 +127,7 @@ class SignUpScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   },

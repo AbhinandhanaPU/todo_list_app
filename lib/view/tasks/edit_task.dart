@@ -3,34 +3,30 @@ import 'package:provider/provider.dart';
 import 'package:todo_list_app/model/task_model.dart';
 import 'package:todo_list_app/viewmodels/task_viewmodel.dart';
 
-showAddTaskDialog(BuildContext context) {
-  final TextEditingController taskController = TextEditingController();
+showEditTaskDialog(BuildContext context, TaskModel task) {
+  final TextEditingController taskController =
+      TextEditingController(text: task.title);
 
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Add New Task'),
+        title: const Text('Edit Task'),
         content: TextField(
           controller: taskController,
-          decoration: const InputDecoration(hintText: 'Enter task title'),
+          decoration: const InputDecoration(hintText: 'Enter new task title'),
         ),
         actions: [
           TextButton(
             onPressed: () {
               if (taskController.text.isNotEmpty) {
-                final task = TaskModel(
-                  id: DateTime.now().toString(),
-                  title: taskController.text,
-                  isCompleted: false,
-                );
                 Provider.of<TaskViewModel>(context, listen: false)
-                    .addTask(task);
+                    .editTaskName(task.id, taskController.text);
                 taskController.clear();
                 Navigator.of(context).pop();
               }
             },
-            child: const Text('Add'),
+            child: const Text('Save'),
           ),
           TextButton(
             onPressed: () {

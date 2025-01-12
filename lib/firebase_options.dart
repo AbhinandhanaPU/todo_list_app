@@ -55,6 +55,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '560410279556',
     projectId: 'todo-list-app-d5e0a',
     authDomain: 'todo-list-app-d5e0a.firebaseapp.com',
+    databaseURL: 'https://todo-list-app-d5e0a-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'todo-list-app-d5e0a.firebasestorage.app',
   );
 
@@ -63,6 +64,8 @@ class DefaultFirebaseOptions {
     appId: '1:560410279556:android:528f3210f4e911945c0cd1',
     messagingSenderId: '560410279556',
     projectId: 'todo-list-app-d5e0a',
+    databaseURL: 'https://todo-list-app-d5e0a-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'todo-list-app-d5e0a.firebasestorage.app',
   );
+
 }
