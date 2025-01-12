@@ -38,6 +38,7 @@ class TaskServices {
     }
   }
 
+  // fetch tasks
   Future<List<TaskModel>> fetchTasks() async {
     final user = _auth.currentUser;
     final authToken = await user?.getIdToken();
@@ -60,33 +61,6 @@ class TaskServices {
       return tasks;
     } else {
       throw Exception('Failed to fetch tasks: ${response.statusCode}');
-    }
-  }
-
-  // fetch tasks
-  Stream<List<TaskModel>> fetchTaskStream() async* {
-    while (true) {
-      final user = _auth.currentUser;
-      final authToken = await user?.getIdToken();
-      final String? userId = user?.uid;
-      if (user == null) {
-        log('No user is signed in');
-      }
-      final url = Uri.parse('$baseUrl/tasks/$userId.json?auth=$authToken');
-      final response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body) as Map<String, dynamic>?;
-        final tasks = data?.entries
-                .map((e) => TaskModel.fromJson({...e.value, 'id': e.key}))
-                .toList() ??
-            [];
-        yield tasks;
-      } else {
-        yield [];
-      }
-
-      await Future.delayed(const Duration(seconds: 5));
     }
   }
 
